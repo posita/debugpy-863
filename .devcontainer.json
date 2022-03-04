@@ -1,0 +1,46 @@
+// For format details, see <https://aka.ms/devcontainer.json>. See also
+// <https://code.visualstudio.com/docs/remote/troubleshooting> for additional tips and
+// tricks.
+{
+  "name": "debugpy-863",
+  "build": {
+    "dockerfile": "Dockerfile",
+  },
+  "runArgs": [
+    "--cap-add=SYS_PTRACE",
+    "--security-opt=seccomp:unconfined",
+    "--init"
+  ],
+  // Defaults for container specific settings. The actual settings will live (and
+  // persist) in ~/.vscode-server/data/Machine/settings.json inside the container.
+  "settings": {
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.wordWrapColumn": 88,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "python.defaultInterpreterPath": "/opt/local/bin/python",
+    "python.formatting.blackPath": "/opt/local/bin/black",
+    "python.formatting.provider": "black",
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": "/opt/local/bin/flake8",
+    "python.linting.mypyEnabled": true,
+    "python.linting.mypyPath": "mypy",
+    "python.sortImports.path": "/opt/local/bin/isort",
+    "[python]": {
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+      }
+    }
+  },
+  "mounts": [
+    "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock"
+  ],
+  "extensions": [
+    "ms-python.python",
+    "ms-python.vscode-pylance"
+  ]
+}
